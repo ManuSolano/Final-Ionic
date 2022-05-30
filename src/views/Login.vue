@@ -30,7 +30,7 @@
       </ion-row>
       <ion-row class="ion-justify-content-center">
         <ion-col size="4">
-          <ion-button expand="block" @click="agregarClaves()" href="tabs/tab1">Iniciar Sesión</ion-button>
+          <ion-button expand="block" @click="agregarClaves()" tab="tab1" href="tabs/tab1">Iniciar Sesión</ion-button>
           <alert-controller></alert-controller>
         </ion-col>
       </ion-row>
