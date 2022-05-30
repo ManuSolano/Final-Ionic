@@ -1,110 +1,106 @@
 <template>
   <ion-page>
+    <ion-router-outlet></ion-router-outlet>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Tab 3</ion-title>
+        <ion-title>Login</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Tab 3</ion-title>
+          <ion-title size="large">Login</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-item>
-        <ion-label>Número de claves nuevas</ion-label>
-        <ion-input
-        Type="number"
-        min="1"
-        :value="claves"
-        @ionInput="claves = parseInt($event.target.value)"
-        ></ion-input>
-      </ion-item>
-      <ion-button expand="block" @click="agregarClaves()"
-      >Agregar claves</ion-button
-      >
-      <alert-controller></alert-controller>
-      <ExploreContainer name="Tab 3 page" />
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="4">
+          <ion-item>
+            <ion-label>Correo</ion-label>
+            <ion-input Type="email" id="correo"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="4">
+          <ion-item>
+            <ion-label>Contraseña</ion-label>
+            <ion-input Type="password" id="contraseña"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="4">
+          <ion-button expand="block" @click="agregarClaves()" href="tabs/tab1">Iniciar Sesión</ion-button>
+          <alert-controller></alert-controller>
+        </ion-col>
+      </ion-row>
     </ion-content>
   </ion-page>
 </template>
 
+
 <script>
+
+
 import {
-IonPage,
-IonHeader,
-IonToolbar,
-IonTitle,
-IonContent,
-alertController,
-IonButton,
-IonItem,
-IonInput,
-IonLabel,
-} from "@ionic/vue";
-import { getDatabase, ref, push } from "firebase/database";
-export default {
-name: "Tab3Page",
-components: {
+  IonPage,
   IonHeader,
-IonToolbar,
-IonTitle,
-IonContent,
-IonPage,
-alertController,
-IonButton,
-IonItem,
-IonInput,
-IonLabel,
-},
-data() {
-return {
-claves: 1,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  alertController,
+  IonButton,
+  IonItem,
+  IonInput,
+} from "@ionic/vue";
+import { useRouter } from "vue-router";
+export default {
+
+  name: "Login-Page",
+  components: {
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonPage,
+    alertController,
+    IonButton,
+    IonItem,
+    IonInput,
+  },
+setup() {
+      const router = useRouter();
+     const end = () => {
+      // something to do.
+      return router.push({ name: 'tab1'});
+    };
+    return {
+      end,
+    }
+    },
+  data() {
+    return {
+      claves: 1,
+    };
+  },
+  methods: {
+    async agregarClaves() {
+      {
+        document.getElementById("correo").value = "";
+        document.getElementById("contraseña").value = "";
+        const alert = await alertController.create({
+          cssClass: "Inicio de sesión exitoso",
+          header: "Inicio de sesión exitoso",
+          buttons: ["Aceptar"],
+        });
+        await alert.present();
+      }
+    },
+  },
 };
-},
-methods: {
-async agregarClaves() {
-const db = getDatabase();
-var i;
-var errores = 0;
-for (i = 0; i < this.claves; i++) {
-push(ref(db, "claves/"), {
-status: "",
-usuario: "",
-})
-.then(async () => {
-// Data saved successfully!
-})
-.catch(async (error) => {
-console.log(error);
-errores++;
-});
-}
-if (errores > 0) {
-const alert = await alertController.create({
-cssClass: "clase claves no agregadas",
-header: "Claves NO agregadas",
-subHeader: "Error",
-message: "No se agregagor las claves",
-buttons: ["Aceptar"],
-});
-await alert.present();
-const { role } = await alert.onDidDismiss();
-console.log("onDidDismiss resolved with role", role);
-} else {
-const alert = await alertController.create({
-cssClass: "clase claves agregadas",
-header: "Claves agregadas",
-subHeader: "Éxito",
-message: "Se agregaron las claves con éxito",
-buttons: ["Aceptar"],
-});
-await alert.present();
-const { role } = await alert.onDidDismiss();
-console.log("onDidDismiss resolved with role", role);
-}
-},
-},
-};
+
+
+
+
 </script>
 
