@@ -34,7 +34,6 @@
             <ion-button
               expand="block"
               @click="agregarClaves()"
-             href="tabs/tab1"
               >Iniciar Sesión</ion-button
             >
             <alert-controller></alert-controller>
