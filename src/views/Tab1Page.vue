@@ -101,10 +101,16 @@ ion-col > div {
   padding: 10px;
   background-color: rgb(83, 115, 99);
 }
-
+.wrapper {
+  margin-top: 15%;
+  align-items: center;
+}
 .wrapper2 {
   margin-top: 10%;
   align-items: center;
+}
+ion-content {
+  --ion-background-color: #243343;
 }
 </style>
 
