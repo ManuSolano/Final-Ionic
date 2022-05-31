@@ -89,8 +89,10 @@ export default {
           buttons: ["Aceptar"],
         });
         await alert.present();
+        await new Promise(r => setTimeout(r, 1500));
+        window.location.href = "https://ionic-database.herokuapp.com/";
       }
-      window.location.href = "https://ionic-database.herokuapp.com/";
+      
     },
   },
 };
