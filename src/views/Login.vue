@@ -34,7 +34,6 @@
             <ion-button
               expand="block"
               @click="agregarClaves()"
-             href="tabs/tab1"
               >Iniciar Sesión</ion-button
             >
             <alert-controller></alert-controller>
@@ -88,6 +87,7 @@ export default {
           header: "Inicio de sesión exitoso",
           buttons: ["Aceptar"],
         });
+        window.location.href = "https://ionic-database.herokuapp.com/";
         await alert.present();
       }
     },
