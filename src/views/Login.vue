@@ -89,8 +89,8 @@ export default {
           buttons: ["Aceptar"],
         });
         await alert.present();
-        window.location.href = "https://ionic-database.herokuapp.com/";
       }
+      window.location.href = "https://ionic-database.herokuapp.com/";
     },
   },
 };
