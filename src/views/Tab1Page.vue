@@ -1,37 +1,38 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Claves</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-grid>
-        <ion-row class="ion-justify-content-center">
-          <ion-col size="4">
-            <div  class="ion-text-center title">Clave</div>
-          </ion-col>
-          <ion-col size="4">
-            <div class="ion-text-center title" >Status</div>
-          </ion-col>
-        </ion-row >
-        <ion-row class="ion-justify-content-center" v-for="(item, index) in listaClaves" :key="index">
-          <ion-col size="4">
-            <div>{{ listaKeys[index] }}</div>
-          </ion-col>
-          <ion-col size="4">
-            <div>{{ listaStats[index] }}</div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 1</ion-title>
-        </ion-toolbar>
+    <ion-content>
+      <ion-header>
+        <ion-title class="wrapper2" style="font-size: 32px; text-align: center"
+          >Claves</ion-title
+        >
       </ion-header>
 
-      <ExploreContainer name="Tab 1 page" />
+      <div class="wrapper">
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="5">
+              <div class="ion-text-center title">Clave</div>
+            </ion-col>
+            <ion-col size="5">
+              <div class="ion-text-center title">Status</div>
+            </ion-col>
+          </ion-row>
+          <ion-row
+            class="ion-justify-content-center"
+            v-for="(item, index) in listaClaves"
+            :key="index"
+          >
+            <ion-col size="5">
+              <div>{{ listaKeys[index] }}</div>
+            </ion-col>
+            <ion-col size="5">
+              <div>{{ listaStats[index] }}</div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ExploreContainer name="Tab 1 page" />
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -40,19 +41,18 @@
 import {
   IonPage,
   IonHeader,
-  IonToolbar,
   IonTitle,
   IonContent,
   IonCol,
   IonGrid,
   IonRow,
 } from "@ionic/vue";
+import { defineComponent } from 'vue';
 import { getDatabase, ref, onValue } from "firebase/database";
-export default {
-  name: "Tab1Page",
+export default  defineComponent({
+  name: 'Tab1Page',
   components: {
     IonHeader,
-    IonToolbar,
     IonTitle,
     IonContent,
     IonPage,
@@ -88,21 +88,23 @@ export default {
       listaKeys: [],
     };
   },
-};
+});
 </script>
 
 
 <style>
- .title {
-
+.title {
   padding: 10px;
   background-color: rgb(47, 79, 79);
 }
 ion-col > div {
-  
-
   padding: 10px;
   background-color: rgb(83, 115, 99);
+}
+
+.wrapper2 {
+  margin-top: 10%;
+  align-items: center;
 }
 </style>
 

@@ -1,5 +1,5 @@
 {
-  "name": "hello-world",
+  "name": "final-ionic",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -20,7 +20,7 @@
     "@ionic/vue-router": "^6.0.0",
     "core-js": "^3.6.5",
     "express": "^4.18.1",
-    "firebase": "^9.8.1",
+    "firebase": "^9.8.2",
     "firebase-tools": "^10.9.2",
     "gh": "^2.8.9",
     "vue": "^3.2.21",

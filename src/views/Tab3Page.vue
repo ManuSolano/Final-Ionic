@@ -1,33 +1,31 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Agregar Claves</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="5">
-          <ion-item>
-            <ion-input placeholder="Clave" type="text" id="input"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Claves</ion-title>
-        </ion-toolbar>
+    <ion-content>
+      <ion-header>
+        <ion-title class="wrapper2" style="font-size: 32px; text-align: center"
+          >Nueva Clave</ion-title
+        >
       </ion-header>
 
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="5">
-          <ion-button expand="block" @click="agregarClaves()"
-            >Agregar claves</ion-button
-          >
-        </ion-col>
-      </ion-row>
+      <div class="wrapper">
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+            <ion-item>
+              <ion-input placeholder="Clave" type="text" id="input"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
-      <alert-controller></alert-controller>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+            <ion-button expand="block" @click="agregarClaves()"
+              >Agregar claves</ion-button
+            >
+          </ion-col>
+        </ion-row>
+
+        <alert-controller></alert-controller>
+      </div>
       <ExploreContainer name="Tab 3 page" />
     </ion-content>
   </ion-page>
@@ -37,7 +35,6 @@
 import {
   IonPage,
   IonHeader,
-  IonToolbar,
   IonTitle,
   IonContent,
   alertController,
@@ -46,11 +43,14 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { getDatabase, ref, set } from "firebase/database";
-export default {
-  name: "Tab3Page",
+
+import { defineComponent } from 'vue';
+
+export default  defineComponent({
+  name: 'Tab3Page',
   components: {
     IonHeader,
-    IonToolbar,
+
     IonTitle,
     IonContent,
     IonPage,
@@ -66,20 +66,22 @@ export default {
   },
   methods: {
     async agregarClaves() {
-      const db = getDatabase();
-
       var errores = 0;
-      set(ref(db, "clavesQR/" + document.getElementById("input").value), {
-        status: "d",
-      })
-        .then(async () => {
-          // Data saved successfully!
+      const db = getDatabase();
+      if (document.getElementById("input").value == "") {
+        errores += 1;
+      } else {
+        set(ref(db, "clavesQR/" + document.getElementById("input").value), {
+          status: "d",
         })
-        .catch(async (error) => {
-          console.log(error);
-          errores++;
-        });
-
+          .then(async () => {
+            // Data saved successfully!
+          })
+          .catch(async (error) => {
+            console.log(error);
+            errores++;
+          });
+      }
       document.getElementById("input").value = "";
       if (errores > 0) {
         const alert = await alertController.create({
@@ -106,6 +108,24 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
+<style>
+.wrapper {
+  margin-top: 20%;
+
+  align-items: center;
+}
+.wrapper2 {
+  margin-top: 10%;
+  align-items: center;
+}
+ion-content {
+  --ion-background-color: #243343;
+}
+
+ion-input {
+  --background: #3d535c;
+}
+</style>
