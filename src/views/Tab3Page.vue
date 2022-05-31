@@ -113,8 +113,7 @@ export default  defineComponent({
 
 <style>
 .wrapper {
-  margin-top: 20%;
-
+  margin-top: 15%;
   align-items: center;
 }
 .wrapper2 {

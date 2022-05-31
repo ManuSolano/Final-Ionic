@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 
 import TabsPage from "../views/TabsPage.vue";
-import Login from "../views/Login.vue";
+
 
 const routes = [
   {
     path: "/",
-    redirect: "/login",
+    redirect: "/tabs/tab1",
   },
   {
     path: "/tabs/",
@@ -27,16 +27,6 @@ const routes = [
       {
         path: "tab3",
         component: () => import("@/views/Tab3Page.vue"),
-      },
-    ],
-  },
-  {
-    path: "",
-    component: Login,
-    children: [
-      {
-        path: "/login",
-        component: () => import("@/views/Login.vue"),
       },
     ],
   },
