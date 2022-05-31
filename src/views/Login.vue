@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     async agregarClaves() {
+     if(document.getElementById("correo").value == "manuso@gmail.com"&& document.getElementById("contraseña").value == "manuso")
       {
         document.getElementById("correo").value = "";
         document.getElementById("contraseña").value = "";
@@ -87,8 +88,8 @@ export default {
           header: "Inicio de sesión exitoso",
           buttons: ["Aceptar"],
         });
-        window.location.href = "https://ionic-database.herokuapp.com/";
         await alert.present();
+        window.location.href = "https://ionic-database.herokuapp.com/";
       }
     },
   },
