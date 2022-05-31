@@ -1,51 +1,55 @@
 <template>
   <ion-page>
+    <ion-content>
     <ion-router-outlet></ion-router-outlet>
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Login</ion-title>
-      </ion-toolbar>
+      <ion-title class="wrapper2" style="font-size: 36px; text-align: center;">Login</ion-title>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Login</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="4">
-          <ion-item>
-            <ion-label>Correo</ion-label>
-            <ion-input Type="email" id="correo"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="4">
-          <ion-item>
-            <ion-label>Contraseña</ion-label>
-            <ion-input Type="password" id="contraseña"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="4">
-          <ion-button expand="block" @click="agregarClaves()" href="tabs/tab1">Iniciar Sesión</ion-button>
-          <alert-controller></alert-controller>
-        </ion-col>
-      </ion-row>
+    
+      <div class="wrapper">
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+            <ion-item>
+              <ion-input
+                placeholder="Correo"
+                Type="email"
+                id="correo"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+            <ion-item>
+              <ion-input
+                placeholder="Contraseña"
+                Type="password"
+                id="contraseña"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="5">
+            <ion-button
+              expand="block"
+              @click="agregarClaves()"
+             href="tabs/tab1"
+              >Iniciar Sesión</ion-button
+            >
+            <alert-controller></alert-controller>
+          </ion-col>
+        </ion-row>
+      </div>
     </ion-content>
   </ion-page>
 </template>
 
 
 <script>
-
-
 import {
   IonPage,
   IonHeader,
-  IonToolbar,
   IonTitle,
   IonContent,
   alertController,
@@ -53,13 +57,13 @@ import {
   IonItem,
   IonInput,
 } from "@ionic/vue";
-import { useRouter } from "vue-router";
-export default {
 
+  
+
+export default {
   name: "Login-Page",
   components: {
     IonHeader,
-    IonToolbar,
     IonTitle,
     IonContent,
     IonPage,
@@ -68,16 +72,7 @@ export default {
     IonItem,
     IonInput,
   },
-setup() {
-      const router = useRouter();
-     const end = () => {
-      // something to do.
-      return router.push({ name: 'tab1'});
-    };
-    return {
-      end,
-    }
-    },
+
   data() {
     return {
       claves: 1,
@@ -98,9 +93,19 @@ setup() {
     },
   },
 };
-
-
-
-
 </script>
+<style>
+.wrapper {
+  margin-top: 25%;
+  align-items: center;
+}
 
+.wrapper2 {
+  margin-top: 10%;
+  align-items: center;
+}
+
+ion-content {
+  --ion-background-color: #243343;
+}
+</style>
