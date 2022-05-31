@@ -34,8 +34,7 @@
             <ion-button
               expand="block"
               @click="agregarClaves()"
-              tab="tab1"
-             
+             href="tabs/tab1"
               >Iniciar Sesión</ion-button
             >
             <alert-controller></alert-controller>
@@ -59,15 +58,12 @@ import {
   IonInput,
 } from "@ionic/vue";
 
-import { Tab1Page } from './Tab1Page.vue';
-import { router } from '@vue/router';  
   
 
 export default {
   name: "Login-Page",
   components: {
     IonHeader,
-    Tab1Page,
     IonTitle,
     IonContent,
     IonPage,
@@ -93,7 +89,6 @@ export default {
           buttons: ["Aceptar"],
         });
         await alert.present();
-         router.go({name: 'Tab1Page'})
       }
     },
   },
@@ -109,11 +104,8 @@ export default {
   margin-top: 10%;
   align-items: center;
 }
-ion-content{
 
-    --ion-background-color:#4b6069;
-}
-ion-input{
- --ion-background-color:#4b6069;
+ion-content {
+  --ion-background-color: #243343;
 }
 </style>

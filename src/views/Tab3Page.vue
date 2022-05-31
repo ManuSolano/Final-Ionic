@@ -125,7 +125,5 @@ ion-content {
   --ion-background-color: #243343;
 }
 
-ion-input {
-  --background: #3d535c;
-}
+
 </style>
